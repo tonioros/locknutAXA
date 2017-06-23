@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%=title %></title>
+    <title>Error</title>
     <link rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.min.css' />
     <link rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap-grid.min.css' />
     <link rel='stylesheet' href='/bower_components/font-awesome/css/font-awesome.min.css' />
@@ -12,4 +12,10 @@
     <header class="jumbotron header">
       <a href="http://axacontrol.herokuapp.com"><h2 id="h2-header" class="text-center text-header" ><i class="fa fa-wrench" aria-hidden="true"></i> AXA Control</h2></a>
     </header>
-    <div class="container-fluid">
+      <div class="container-fluid">
+        <h1><%=message %></h1>
+        <h2><%=error.status %></h2>
+        <pre> <%=error.stack %> </pre>
+      </div>
+  </body>
+</html>

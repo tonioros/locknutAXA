@@ -16,6 +16,11 @@ a:hover{
   text-decoration: none;
   color: none;
 }
+footer{
+  background: #383838;
+  color: #f9f9f9;
+  padding: 20px 10px;
+}
 .options2, .options{
   padding: 10px 15px;
   margin: 4px;
@@ -67,7 +72,6 @@ a:hover{
   z-index: 10;
   transition: 0.3s;
 }
-.acortar h1, h2,h3,h4{
-  font-weight: 100;
-  font-size: 1em;
+.p-index{
+  font-size: 1.2em;
 }
