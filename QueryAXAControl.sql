@@ -18,6 +18,7 @@ CREATE TABLE usuario(
     nombre VARCHAR(60) NOT NULL,
     edad INT,
     fechaCreacion DATETIME NOT NULL,
+    correo VARCHAR(60) NOT NULL,
     nick VARCHAR(20) ,
     contrasena VARCHAR(20),
     urlIMG VARCHAR(100),
@@ -33,6 +34,7 @@ CREATE TABLE auto(
     modelo VARCHAR(20) NOT NULL,
     marca VARCHAR(20) NOT NULL,
     anio VARCHAR(4) NOT NULL,
+    codigo VARCHAR(20) NOT NULL,
     fechaCreacion DATETIME NOT NULL,
     FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
 );
@@ -42,11 +44,18 @@ CREATE TABLE servicio(
     idMecanico INT NOT NULL,
     idAuto INT NOT NULL,
     fecha DATETIME NOT NULL,
-    descripcion TEXT NOT NULL,
     idEmpresa INT NOT NULL,
     FOREIGN KEY (idEmpresa) REFERENCES empresa(idEmpresa),
     FOREIGN KEY (idMecanico) REFERENCES usuario(idUsuario),
     FOREIGN KEY (idAuto) REFERENCES auto(idAuto)
+);
+
+CREATE TABLE detalleServicio(
+    idDetalleS INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    idServicio INT NOT NULL,
+    descripcion VARCHAR(60) NOT NULL,
+    subtotal DECIMAL(5,2) NOT NULL,
+    FOREIGN KEY (idServicio) REFERENCES servicio(idServicio),
 );
 
 /* TABLA PARA COMENTARIOS DEL SERVICIO 
@@ -55,14 +64,13 @@ CREATE TABLE servicio(
     OTRA PARA EL USUARIO 
     AMBAS CON SUS JOINS
 */
-CREATE TABLE detalleServicio(
-    idDetalleS INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    idMecanico INT NOT NULL,
+
+CREATE TABLE comentarioServicio(
+    idComentarioS INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    idServicio INT NOT NULL,
     idCliente INT NOT NULL,
     descripcion TEXT NOT NULL,
-    idEmpresa INT NOT NULL,
-    FOREIGN KEY (idEmpresa) REFERENCES empresa(idEmpresa),
-    FOREIGN KEY (idMecanico) REFERENCES usuario(idUsuario),
+    FOREIGN KEY (idServicio) REFERENCES servicio(idServicio),
     FOREIGN KEY (idCliente) REFERENCES usuario(idUsuario)
 );
 
@@ -78,14 +86,18 @@ CREATE TABLE factura(
     FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
 );
 
-/* TABLA PARA COMENTARIOS DE MECANICOS | ADMINISTRADORES 
+/* 
+    CREATE TABLE DETALLEFACTURA
+    |ID EMPRESA | CURRENT FACTURA | MAX FACTURA   
+
+TABLA PARA COMENTARIOS DE MECANICOS | ADMINISTRADORES 
     SE USA HACIENDO DOS CONSULTAS INDEPENDIENTES 
     UNA HACIA EL MECANICO 
     OTRA PARA EL USUARIO | ADMINISTRADORES 
     AMBAS CON SUS JOINS
 */
-CREATE TABLE detalleUsuario(
-    idDetalleU INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+CREATE TABLE comentarioUsuario(
+    idComentarioU INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     idUsuario INT NOT NULL,
     idCliente INT NOT NULL,
     descripcion TEXT NOT NULL,
@@ -99,17 +111,17 @@ CREATE TABLE calendario(
     idCalendario INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     idCliente INT NOT NULL,
     fecha DATETIME NOT NULL,
-    idMecanico INT NOT NULL,
-    descripcion TEXT NOT NULL,
+    descripcion TEXT,
+    idAuto INT NOT NULL,
     idEmpresa INT NOT NULL,
     FOREIGN KEY (idEmpresa) REFERENCES empresa(idEmpresa),
     FOREIGN KEY (idCliente) REFERENCES usuario(idUsuario),
-    FOREIGN KEY (idMecanico) REFERENCES usuario(idUsuario)
+    FOREIGN KEY (idAuto) REFERENCES auto(idAuto)
 );
 
 /*
     ___________     ____   ____       ___
-    |          |   |   |   |   \     |  |      
+    |          |   |   |   |   \     |  |
     |    ______|   |   |   |    \    |  |
     |   |___       |   |   |     \   |  |
     |   ____|      |   |   |      \  |  |

@@ -8,19 +8,7 @@
   padding-top: 5em;
   padding-bottom: 5em; 
 }
-a{
-  text-decoration: none;
-  color: none;
-}
-a:hover{
-  text-decoration: none;
-  color: none;
-}
-footer{
-  background: #383838;
-  color: #f9f9f9;
-  padding: 20px 10px;
-}
+
 .options2, .options{
   padding: 10px 15px;
   margin: 4px;
@@ -74,4 +62,27 @@ footer{
 }
 .p-index{
   font-size: 1.2em;
+}
+h1{
+  color: rgb(32, 138, 230);
+}
+h2{
+  color: rgb(27, 107, 177);
+}
+h3{
+  color: rgb(47, 101, 120);
+}
+img{
+  border-radius: 3px;
+}
+a{
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: none;
+}
+footer{
+  background: #383838;
+  color: #f9f9f9;
+  padding: 20px 10px;
 }
