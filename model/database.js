@@ -16,3 +16,4 @@ console.log("Se conecto al Dominio externo")
 var connection = mysql.createConnection(parametros);
 console.log("Se conecto al Dominio local")
 }
+module.exports = connection

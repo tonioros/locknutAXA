@@ -55,7 +55,7 @@ CREATE TABLE detalleServicio(
     idServicio INT NOT NULL,
     descripcion VARCHAR(60) NOT NULL,
     subtotal DECIMAL(5,2) NOT NULL,
-    FOREIGN KEY (idServicio) REFERENCES servicio(idServicio),
+    FOREIGN KEY (idServicio) REFERENCES servicio(idServicio)
 );
 
 /* TABLA PARA COMENTARIOS DEL SERVICIO 
@@ -94,8 +94,7 @@ TABLA PARA COMENTARIOS DE MECANICOS | ADMINISTRADORES
     SE USA HACIENDO DOS CONSULTAS INDEPENDIENTES 
     UNA HACIA EL MECANICO 
     OTRA PARA EL USUARIO | ADMINISTRADORES 
-    AMBAS CON SUS JOINS
-*/
+            AMBAS CON SUS JOINS
 CREATE TABLE comentarioUsuario(
     idComentarioU INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     idUsuario INT NOT NULL,
@@ -106,6 +105,7 @@ CREATE TABLE comentarioUsuario(
     FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario),
     FOREIGN KEY (idCliente) REFERENCES usuario(idUsuario)
 );
+*/
 
 CREATE TABLE calendario(
     idCalendario INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -119,8 +119,27 @@ CREATE TABLE calendario(
     FOREIGN KEY (idAuto) REFERENCES auto(idAuto)
 );
 
+
+DELIMITER $$
+
+CREATE PROCEDURE sp_eliminarServicio(
+	IN id_servicio INT
+)
+BEGIN
+	DELETE FROM detalleServicio WHERE idServicio = id_servicio;
+	DELETE FROM servicio WHERE idServicio = id_servicio;
+END $$
+
 /*
-    ___________     ____   ____       ___
+
+Host: sql9.freesqldatabase.com
+Database name: sql9181102
+Database user: sql9181102
+Database password: 2tjarpglfK
+Port number: 3306
+
+
+    ___________     ____   ____      ___
     |          |   |   |   |   \     |  |
     |    ______|   |   |   |    \    |  |
     |   |___       |   |   |     \   |  |
@@ -129,5 +148,5 @@ CREATE TABLE calendario(
     |   |          |   |   |    |\  \|  |
     |   |          |   |   |    | \     |
     |___|          |___|   |____|  \____| ALV 
-
+ 
 */ 

@@ -5,8 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+//Declaracion de Routers
+/** Router para vistas */
+var views = require('./routes/views'),
+/** Router para WEB SERVICES */
+apiServicio = require('./routes/apiServicio'),
+apiDServicio = require('./routes/apiDetalleServicio'),
+apiCServicio = require('./routes/apiComentarioServicio')
 
 var app = express();
 
@@ -22,8 +27,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
+//Rutas para Vistas
+app.use('/', views);
+
+//Rutas para WEB SERVICES
+app.use('/', apiServicio)
+app.use('/', apiDServicio)
+app.use('/', apiCServicio)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
