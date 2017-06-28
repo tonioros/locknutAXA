@@ -119,8 +119,7 @@ CREATE TABLE calendario(
     FOREIGN KEY (idAuto) REFERENCES auto(idAuto)
 );
 
-/*
-    ___________     ____   ____       ___
+/*  ___________     ____   ____       ___
     |          |   |   |   |   \     |  |
     |    ______|   |   |   |    \    |  |
     |   |___       |   |   |     \   |  |
@@ -129,5 +128,4 @@ CREATE TABLE calendario(
     |   |          |   |   |    |\  \|  |
     |   |          |   |   |    | \     |
     |___|          |___|   |____|  \____| ALV 
-
 */ 
