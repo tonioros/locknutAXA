@@ -86,3 +86,15 @@ footer{
   color: #f9f9f9;
   padding: 20px 10px;
 }
+
+.login-box{
+  border-bottom: solid 1px #6c6c6c;
+  padding: 15px 5px;
+}
+
+.login-box input{
+  margin: 6px 10px;
+}
+.login-box button{
+  margin: 4px 35%;
+}

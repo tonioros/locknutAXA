@@ -119,10 +119,6 @@ CREATE TABLE calendario(
     FOREIGN KEY (idAuto) REFERENCES auto(idAuto)
 );
 
-<<<<<<< HEAD
-/*  ___________     ____   ____       ___
-=======
-
 DELIMITER $$
 
 CREATE PROCEDURE sp_eliminarServicio(
@@ -143,7 +139,6 @@ Port number: 3306
 
 
     ___________     ____   ____      ___
->>>>>>> 432e5cd9e92daf035686fc1c66d672c7d54913cf
     |          |   |   |   |   \     |  |
     |    ______|   |   |   |    \    |  |
     |   |___       |   |   |     \   |  |
@@ -152,8 +147,4 @@ Port number: 3306
     |   |          |   |   |    |\  \|  |
     |   |          |   |   |    | \     |
     |___|          |___|   |____|  \____| ALV 
-<<<<<<< HEAD
-=======
- 
->>>>>>> 432e5cd9e92daf035686fc1c66d672c7d54913cf
 */ 

@@ -5,21 +5,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-<<<<<<< HEAD
-var index = require('./routes/index');
-var users = require('./routes/users');
-var calendarioRoute = require('./routes/calendarioRoute');
-var detalleSRoute = require('./routes/detalleSRoute');
-var servicioRoute = require('./routes/servicioRoute');
-=======
 //Declaracion de Routers
 /** Router para vistas */
 var views = require('./routes/views'),
 /** Router para WEB SERVICES */
 apiServicio = require('./routes/apiServicio'),
 apiDServicio = require('./routes/apiDetalleServicio'),
-apiCServicio = require('./routes/apiComentarioServicio')
->>>>>>> 432e5cd9e92daf035686fc1c66d672c7d54913cf
+apiCServicio = require('./routes/apiComentarioServicio'),
+apiCalendario  = require("./routes/apiCalendario")
 
 var app = express();
 
@@ -35,13 +28,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-<<<<<<< HEAD
-app.use('/', index);
-app.use('/users', users);
-app.use('/', calendarioRoute);
-app.use('/', detalleSRoute);
-app.use('/', servicioRoute);
-=======
 //Rutas para Vistas
 app.use('/', views);
 
@@ -49,7 +35,7 @@ app.use('/', views);
 app.use('/', apiServicio)
 app.use('/', apiDServicio)
 app.use('/', apiCServicio)
->>>>>>> 432e5cd9e92daf035686fc1c66d672c7d54913cf
+app.use('/', apiCalendario)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -2,7 +2,7 @@ var express = require('express');
 var calendario = require('../model/calendario');
 var router = express.Router();
 
-router.get('/api/calendario/cli/:idCliente',
+router.get('/apiCalendario/cli/:idCliente',
   function(req, res) {
     var idCliente = req.params.idCliente;
     calendario.selectAllByCli(idCliente, function(error, resultados){
@@ -14,7 +14,7 @@ router.get('/api/calendario/cli/:idCliente',
   });
 });
 
-router.get('/api/calendario/aut/:idAuto',
+router.get('/apiCalendario/aut/:idAuto',
   function(req, res) {
     var idAuto = req.params.idAuto;
     calendario.selectAllByAut(idAuto, function(error, resultados){
@@ -26,7 +26,7 @@ router.get('/api/calendario/aut/:idAuto',
   });
 });
 
-router.get('/api/calendario/emp/:idEmpresa',
+router.get('/apiCalendario/emp/:idEmpresa',
   function(req, res) {
     var idEmpresa = req.params.idEmpresa;
     calendario.selectAllByEmp(idEmpresa, function(error, resultados){
@@ -38,7 +38,7 @@ router.get('/api/calendario/emp/:idEmpresa',
   });
 });
 
-router.get('/api/calendario/', function(req, res) {
+router.get('/apiCalendario/', function(req, res) {
     calendario.selectAll(function(error, resultados){
       if(typeof resultados !== undefined) {
         res.json(resultados);
@@ -49,7 +49,7 @@ router.get('/api/calendario/', function(req, res) {
 
 });
 
-router.get('/api/calendario/:idCalendario',
+router.get('/apiCalendario/:idCalendario',
   function(req, res) {
     var idCalendario = req.params.idCalendario;
     calendario.SelectOne(idCalendario, function(error, resultados){
@@ -61,7 +61,7 @@ router.get('/api/calendario/:idCalendario',
   });
 });
 
-router.post('/api/calendario', function(req, res) {
+router.post('/apiCalendario', function(req, res) {
   var data = {
     idCliente: req.body.idCliente,
     fecha: req.body.fecha,
@@ -78,7 +78,7 @@ router.post('/api/calendario', function(req, res) {
   });
 });
 
-router.put('/api/calendario/:idCalendario', function(req, res) {
+router.put('/apiCalendario/:idCalendario', function(req, res) {
   var cookie = req.cookies;
   var data = {
     idCliente: req.body.idCliente,
@@ -97,7 +97,7 @@ router.put('/api/calendario/:idCalendario', function(req, res) {
   });
 });
 
-router.delete('/api/calendario/:idCalendario', function(req, res) {
+router.delete('/apiCalendario/:idCalendario', function(req, res) {
     var idCalendario = req.params.idCalendario;
     calendario.Delete(idCalendario,function(error, resultado){
       if(resultado && resultado.Mensaje === "Eliminado") {
