@@ -13,8 +13,15 @@ try{
   parametros.user = "root"
   parametros.password = ""
   parametros.database="axaControl";
+<<<<<<< HEAD
   var connection = mysql.createConnection(parametros);
   console.log("Se conecto al Dominio local");
 }
 
 module.exports = connection;
+=======
+var connection = mysql.createConnection(parametros);
+console.log("Se conecto al Dominio local")
+}
+module.exports = connection
+>>>>>>> 432e5cd9e92daf035686fc1c66d672c7d54913cf

@@ -8,7 +8,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Iniciar programa",
+            "name": "Iniciar esta madre",
             "program": "${workspaceRoot}\\bin\\www"
         }
     ]
