@@ -12,8 +12,10 @@ var views = require('./routes/views'),
 apiServicio = require('./routes/apiServicio'),
 apiDServicio = require('./routes/apiDetalleServicio'),
 apiCServicio = require('./routes/apiComentarioServicio'),
-apiCalendario  = require("./routes/apiCalendario")
-
+apiCalendario  = require("./routes/apiCalendario"),
+apiAuto = require('./routes/apiAuto'),
+apiEmpresa = require('./routes/apiEmpresa'),
+apiUsuario = require('./routes/apiUsuario')
 var app = express();
 
 // view engine setup
@@ -36,7 +38,9 @@ app.use('/', apiServicio)
 app.use('/', apiDServicio)
 app.use('/', apiCServicio)
 app.use('/', apiCalendario)
-
+app.use('/', apiAuto)
+app.use('/', apiEmpresa)
+app.use('/', apiUsuario)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
