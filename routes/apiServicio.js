@@ -12,6 +12,55 @@ router.get("/apiServicio/ID/:idEmpresa", function(req,res,next){
     }
 })
 
+router.get("/apiServicio/Auto/:idAuto", function(req,res,next){
+    if(req.params.idAuto != null){
+        servicio.selectByCar(req.params.idAuto, function(error, resultado){
+            if(resultado == null){
+                res.json({Mensaje: "SIN RESULTADO"})
+            }else{
+                if(resultado.length != 0){
+                    res.json(resultado[0])
+                }else{
+                    res.json({Mensaje: "Servicio no encontrado"})
+                }
+            }
+        })
+    }
+})
+
+router.get("/apiServicio/Mecanico/:idMecanico", function(req,res,next){
+    if(req.params.idMecanico != null){
+        servicio.selectByMechanical(req.params.idMecanico, function(error, resultado){
+            if(resultado == null){
+                res.json({Mensaje: "SIN RESULTADO"})
+            }else{
+                if(resultado.length != 0){
+                    res.json(resultado[0])
+                }else{
+                    res.json({Mensaje: "Servicio no encontrado"})
+                }
+            }
+        })
+    }
+})
+
+router.get("/apiServicio/:dia/:mes/:anio", function(req,res,next){
+    if(req.params.dia != null && req.params.mes != null && req.params.anio != null){
+        var data = [req.params.dia,req.params.mes,req.params.anio]
+        servicio.selectByDate(data, function(error, resultado){
+            if(resultado == null){
+                res.json({Mensaje: "SIN RESULTADO"})
+            }else{
+                if(resultado.length != 0){
+                    res.json(resultado[0])
+                }else{
+                    res.json({Mensaje: "Servicio no encontrado"})
+                }
+            }
+        })
+    }
+})
+
 router.get("/apiServicio/:idServicio", function(req,res,next){
     if(req.params.idServicio != null){
         servicio.select(req.params.idServicio, function(error, resultado){

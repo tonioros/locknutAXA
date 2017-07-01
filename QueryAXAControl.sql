@@ -19,7 +19,7 @@ CREATE TABLE usuario(
     edad INT,
     fechaCreacion DATETIME NOT NULL,
     correo VARCHAR(60) NOT NULL,
-    nick VARCHAR(20) ,
+    codigo VARCHAR(20) ,
     contrasena VARCHAR(20),
     urlIMG VARCHAR(100),
     idTipoUsuario INT NOT NULL,

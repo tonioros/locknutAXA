@@ -12,11 +12,65 @@ var database = require("./database"), servicio = {}
 */
 servicio.selectAll = function(idEmpresa,callback){
     if(database){
-    database.query("SELECT sr.idServicio, me.idUsuario, me.nombre, me.correo, me.codigo AS codigoUsuario , me.urlIMG "
+    database.query("SELECT sr.idServicio, me.idUsuario, me.nombre AS nombreUsuario,me.codigo AS codigoUsuario , me.urlIMG AS imgUsuario"
         +",au.idAuto, au.modelo, au.marca, au.anio, au.codigo AS codigoAuto "
         +",sr.fecha AS fechaServicio, sr.idEmpresa FROM servicio sr "
         +"INNER JOIN usuario me ON me.idUsuario = sr.idServicio INNER JOIN auto au ON au.idAuto = sr.idAuto "
         +"WHERE sr.idEmpresa = ? ;",idEmpresa,
+        function(error, resultado){
+            if(resultado != null){
+                callback(null, resultado)
+            }else{
+                throw error;
+            }
+        }
+    )
+    }
+}
+
+servicio.selectByCar = function(idAuto,callback){
+    if(database){
+    database.query("SELECT sr.idServicio, me.idUsuario, me.nombre AS nombreUsuario,me.codigo AS codigoUsuario , me.urlIMG AS imgUsuario"
+        +",au.idAuto, au.modelo, au.marca, au.anio, au.codigo AS codigoAuto "
+        +",sr.fecha AS fechaServicio, sr.idEmpresa FROM servicio sr "
+        +"INNER JOIN usuario me ON me.idUsuario = sr.idServicio INNER JOIN auto au ON au.idAuto = sr.idAuto "
+        +"WHERE sr.idAuto = ? ;",idAuto,
+        function(error, resultado){
+            if(resultado != null){
+                callback(null, resultado)
+            }else{
+                throw error;
+            }
+        }
+    )
+    }
+}
+
+servicio.selectByMechanical = function(idMecanico,callback){
+    if(database){
+    database.query("SELECT sr.idServicio, me.idUsuario, me.nombre AS nombreUsuario,me.codigo AS codigoUsuario , me.urlIMG AS imgUsuario"
+        +",au.idAuto, au.modelo, au.marca, au.anio, au.codigo AS codigoAuto "
+        +",sr.fecha AS fechaServicio, sr.idEmpresa FROM servicio sr "
+        +"INNER JOIN usuario me ON me.idUsuario = sr.idServicio INNER JOIN auto au ON au.idAuto = sr.idAuto "
+        +"WHERE sr.idMecanico = ? ;",idMecanico,
+        function(error, resultado){
+            if(resultado != null){
+                callback(null, resultado)
+            }else{
+                throw error;
+            }
+        }
+    )
+    }
+}
+
+servicio.selectByDate = function(data,callback){
+    if(database){
+    database.query("SELECT sr.idServicio, me.idUsuario, me.nombre AS nombreUsuario,me.codigo AS codigoUsuario , me.urlIMG AS imgUsuario"
+        +",au.idAuto, au.modelo, au.marca, au.anio, au.codigo AS codigoAuto "
+        +",sr.fecha AS fechaServicio, sr.idEmpresa FROM servicio sr "
+        +"INNER JOIN usuario me ON me.idUsuario = sr.idServicio INNER JOIN auto au ON au.idAuto = sr.idAuto "
+        +"WHERE DAY(sr.fecha)= ? && MONTH(sr.fecha) = ? &&  YEAR(sr.fecha) = ? ; ",data,
         function(error, resultado){
             if(resultado != null){
                 callback(null, resultado)
