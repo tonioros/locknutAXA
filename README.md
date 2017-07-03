@@ -8,12 +8,12 @@ Estamos teniendo un estandar para las URLs dentro del APP
 Todas inician Con 
 
 ```http
-    axacontrol.herokuapp.com | localhost /api<Nombre_Controlador>
+    axacontrol.herokuapp.com | localhost /api/<nombre_controlador>
 ```
 Quisiera si pueden modificar este archivo y colocar las URL que tiene su WS y los datos que devuelve
 
 ### Servicio
-#### /apiServicio/ID/:EmpresaID
+#### /api/servicio/ID/:EmpresaID
 
 ```json
 {

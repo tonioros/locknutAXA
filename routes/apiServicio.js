@@ -1,6 +1,6 @@
 var router = require("express").Router(), servicio = require("../model/servicio")
 
-router.get("/apiServicio/ID/:idEmpresa", function(req,res,next){
+router.get("/api/servicio/ID/:idEmpresa", function(req,res,next){
     if(req.params.idEmpresa != null){
         servicio.selectAll(req.params.idEmpresa, function(error, resultado){
             if(resultado == null){
@@ -12,7 +12,7 @@ router.get("/apiServicio/ID/:idEmpresa", function(req,res,next){
     }
 })
 
-router.get("/apiServicio/Auto/:idAuto", function(req,res,next){
+router.get("/api/servicio/auto/:idAuto", function(req,res,next){
     if(req.params.idAuto != null){
         servicio.selectByCar(req.params.idAuto, function(error, resultado){
             if(resultado == null){
@@ -28,7 +28,7 @@ router.get("/apiServicio/Auto/:idAuto", function(req,res,next){
     }
 })
 
-router.get("/apiServicio/Mecanico/:idMecanico", function(req,res,next){
+router.get("/api/servicio/mecanico/:idMecanico", function(req,res,next){
     if(req.params.idMecanico != null){
         servicio.selectByMechanical(req.params.idMecanico, function(error, resultado){
             if(resultado == null){
@@ -44,7 +44,7 @@ router.get("/apiServicio/Mecanico/:idMecanico", function(req,res,next){
     }
 })
 
-router.get("/apiServicio/:dia/:mes/:anio", function(req,res,next){
+router.get("/api/servicio/:dia/:mes/:anio", function(req,res,next){
     if(req.params.dia != null && req.params.mes != null && req.params.anio != null){
         var data = [req.params.dia,req.params.mes,req.params.anio]
         servicio.selectByDate(data, function(error, resultado){
@@ -61,7 +61,7 @@ router.get("/apiServicio/:dia/:mes/:anio", function(req,res,next){
     }
 })
 
-router.get("/apiServicio/:idServicio", function(req,res,next){
+router.get("/api/servicio/:idServicio", function(req,res,next){
     if(req.params.idServicio != null){
         servicio.select(req.params.idServicio, function(error, resultado){
             if(resultado == null){
@@ -77,7 +77,7 @@ router.get("/apiServicio/:idServicio", function(req,res,next){
     }
 })
 
-router.post("/apiServicio", function(req,res,next){
+router.post("/api/servicio", function(req,res,next){
     var data = [req.body.idMecanico, req.body.idAuto, req.body.fecha ,req.body.idEmpresa]
     servicio.insert(data, function(error, resultado){
         if(resultado == null){
@@ -88,7 +88,7 @@ router.post("/apiServicio", function(req,res,next){
     })
 })
 
-router.put("/apiServicio/:idServicio", function(req,res,next){
+router.put("/api/servicio/:idServicio", function(req,res,next){
     if(req.body.idServicio == req.params.idServicio){
         var data = [req.body.idMecanico, req.body.idAuto, req.body.fecha ,req.body.idEmpresa, req.body.idServicio]
         servicio.update(data, function(error, resultado){
@@ -101,7 +101,7 @@ router.put("/apiServicio/:idServicio", function(req,res,next){
     }
 })
 
-router.delete("/apiServicio/:idServicio", function(req,res,next){
+router.delete("/api/servicio/:idServicio", function(req,res,next){
     servicio.delete(req.params.idServicio, function(error, resultado){
         if(resultado == null){
             res.json({Mensaje: false})

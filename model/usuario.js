@@ -3,7 +3,7 @@ var usuario = {};
 
 usuario.selectAll = function(id, callback){
   if(database){
-    database.query("SELECT * FROM Usuario WHERE idEmpresa = ?", id,function(error,resultados){
+    database.query("SELECT * FROM usuario WHERE idEmpresa = ?", id,function(error,resultados){
       if(error){
         throw error;
       }else {
@@ -15,7 +15,7 @@ usuario.selectAll = function(id, callback){
 
 usuario.select = function(id, callback){
   if(database){
-    var sql = "SELECT * FROM Usuario WHERE idUsuario = ?";
+    var sql = "SELECT * FROM usuario WHERE idUsuario = ?";
     database.query(sql,id,function(error,resultado){
       if(error){
         throw error;
@@ -28,7 +28,7 @@ usuario.select = function(id, callback){
 
 usuario.autenticar = function(data, callback) {
   if(database) {
-    var sql = "SELECT * FROM Usuario WHERE (nick = ? OR correo = ?) AND contrasena = ?";
+    var sql = "SELECT * FROM usuario WHERE (codigo = ? OR correo = ?) AND contrasena = ?";
     database.query(sql, [data.nick, data.nick ,data.contrasena],
     function(error, resultado) {
       if(error) {
@@ -42,15 +42,13 @@ usuario.autenticar = function(data, callback) {
 
 usuario.insert = function(data,callback){
   if(database){
-    database.query("INSERT INTO Usuario(nombre,edad,fechaCreacion,correo,nick,contrasena,"
-    +"urlIMG,idTipoUsuario,idEmpresa) VALUES(?,?,?,?,?,?,?,?,?)",
-    [data.nombre,data.edad,data.fechaCreacion,data.correo,data.nick,data.contrasena,
-      data.urlIMG,data.idTipoUsuario,data.idEmpresa],
+    database.query("CALL sp_crearUsuario (?,?,?,?,?,?,?);",
+    [data.nombre,data.edad,data.correo,data.contrasena,data.urlIMG,data.idTipoUsuario,data.idEmpresa],
     function(error,resultado){
       if(error){
         throw error;
       }else {
-        callback(null, {'insertId': resultado.insertId})
+        callback(null, {'Mensaje':true})
       }
     });
   }
@@ -58,9 +56,8 @@ usuario.insert = function(data,callback){
 
 usuario.update = function (data,callback){
   if(database){
-    database.query('UPDATE usuario SET nombre = ?, edad = ?,correo = ? ,nick = ?, contrasena = ?,'+
-    'idTipoUsuario = ? WHERE idUsuario = ?',[data.nombre,data.edad,data.correo,data.nick,data.contrasena,
-    data.idTipoUsuario,data.idUsuario],
+    database.query('UPDATE usuario SET nombre = ?, edad = ?,correo = ? ,contrasena = ?,urlIMG=? WHERE idUsuario = ?',
+    [data.nombre,data.edad,data.correo,data.contrasena,data.urlIMG,data.idUsuario],
     function(error,resultado){
       if(error){
         throw error;
@@ -73,7 +70,7 @@ usuario.update = function (data,callback){
 
 usuario.delete = function (id, callback){
   if(database){
-    database.query('DELETE FROM Usuario WHERE idUsuario = ?'.id,
+    database.query('DELETE FROM usuario WHERE idUsuario = ?',id,
     function(error,resultado){
       if(error){
         throw error;

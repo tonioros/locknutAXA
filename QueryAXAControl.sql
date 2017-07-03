@@ -129,13 +129,32 @@ BEGIN
 	DELETE FROM servicio WHERE idServicio = id_servicio;
 END $$
 
+CREATE PROCEDURE sp_crearUsuario(
+	IN us_nombre VARCHAR(40), 
+	IN us_edad INT, 
+	IN us_correo VARCHAR(50), 
+	IN us_contrasena VARCHAR(15), 
+	IN us_urlIMG VARCHAR(40), 
+	IN us_idTipoUsuario INT, 
+	IN us_idEmpresa INT
+)
+BEGIN
+	DECLARE em_codigo VARCHAR(5);
+	DECLARE us_codigo_temp VARCHAR(5);
+	DECLARE us_codigo VARCHAR(7);
+	SET em_codigo = (SELECT codigo FROM empresa WHERE idEmpresa = us_idEmpresa);
+	SET us_codigo_temp = CONCAT(((SELECT idUsuario FROM usuario ORDER BY idUsuario DESC LIMIT 1) +1) , LOWER(SUBSTR(us_nombre,- LENGTH(us_nombre),2)));
+	SET us_codigo = CONCAT(em_codigo,'-', us_codigo_temp);
+	INSERT INTO usuario(nombre,edad,fechaCreacion,correo,codigo,contrasena,urlIMG,idTipoUsuario,idEmpresa) 
+	VALUES(us_nombre,us_edad,NOW(),us_correo, us_codigo, us_contrasena, us_urlIMG, us_idTipoUsuario, us_idEmpresa );
+END $$
+
 /*
 
-Host: sql9.freesqldatabase.com
-Database name: sql9181102
-Database user: sql9181102
-Database password: 2tjarpglfK
-Port number: 3306
+dominio: johnny.heliohost.org
+usuario: tonioros_axac
+password: axac123
+database: tonioros_axaContro
 
 
     ___________     ____   ____      ___
