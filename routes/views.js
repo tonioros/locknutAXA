@@ -15,4 +15,7 @@ router.get('/registrar', function(req, res, next) {
 router.get('/ADM/', function(req, res, next) {
   res.render('Administrador/index', { title: 'AXA Control | Iniciar Sesion' });
 });
+router.get('/ADM/servicios', function(req, res, next) {
+  res.render('Administrador/servicios', { title: 'AXA Control | Iniciar Sesion' });
+});
 module.exports = router;

@@ -50,7 +50,7 @@ router.post('/api/usuario', function(req, res) {
     nombre: req.body.nombre,
     edad: req.body.edad,
     correo: req.body.correo,
-    urlIMG: 'https://cdn1.iconfinder.com/data/icons/mix-color-4/502/Untitled-1-512.png',
+    urlIMG: (req.body.urlIMG != "" || req.body.urlIMG != null)? req.body.urlIMG :'https://cdn1.iconfinder.com/data/icons/mix-color-4/502/Untitled-1-512.png' ,
     idTipoUsuario: req.body.idTipoUsuario,
     idEmpresa: req.body.idEmpresa,
     contrasena: req.body.contrasena

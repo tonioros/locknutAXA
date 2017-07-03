@@ -13,6 +13,19 @@ empresa.selectAll = function(callback){
   }
 }
 
+empresa.selectByCodigo = function(codigo, callback){
+  if(database){
+    var sql = "SELECT * FROM empresa WHERE codigo = ?";
+    database.query(sql,codigo,function(error,resultado){
+      if(error){
+        throw error;
+      }else {
+        callback(null,resultado);
+      }
+    });
+  }
+}
+
 empresa.select = function(id, callback){
   if(database){
     var sql = "SELECT * FROM empresa WHERE idEmpresa = ?";

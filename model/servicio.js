@@ -16,7 +16,7 @@ servicio.selectAll = function(idEmpresa,callback){
         +",au.idAuto, au.modelo, au.marca, au.anio, au.codigo AS codigoAuto "
         +",sr.fecha AS fechaServicio, sr.idEmpresa FROM servicio sr "
         +"INNER JOIN usuario me ON me.idUsuario = sr.idServicio INNER JOIN auto au ON au.idAuto = sr.idAuto "
-        +"WHERE sr.idEmpresa = ? ;",idEmpresa,
+        +"WHERE sr.idEmpresa = ? LIMIT 15;",idEmpresa,
         function(error, resultado){
             if(resultado != null){
                 callback(null, resultado)
@@ -34,7 +34,7 @@ servicio.selectByCar = function(idAuto,callback){
         +",au.idAuto, au.modelo, au.marca, au.anio, au.codigo AS codigoAuto "
         +",sr.fecha AS fechaServicio, sr.idEmpresa FROM servicio sr "
         +"INNER JOIN usuario me ON me.idUsuario = sr.idServicio INNER JOIN auto au ON au.idAuto = sr.idAuto "
-        +"WHERE sr.idAuto = ? ;",idAuto,
+        +"WHERE sr.idAuto = ? LIMIT 15;",idAuto,
         function(error, resultado){
             if(resultado != null){
                 callback(null, resultado)
@@ -52,7 +52,7 @@ servicio.selectByMechanical = function(idMecanico,callback){
         +",au.idAuto, au.modelo, au.marca, au.anio, au.codigo AS codigoAuto "
         +",sr.fecha AS fechaServicio, sr.idEmpresa FROM servicio sr "
         +"INNER JOIN usuario me ON me.idUsuario = sr.idServicio INNER JOIN auto au ON au.idAuto = sr.idAuto "
-        +"WHERE sr.idMecanico = ? ;",idMecanico,
+        +"WHERE sr.idMecanico = ? LIMIT 15;",idMecanico,
         function(error, resultado){
             if(resultado != null){
                 callback(null, resultado)
@@ -70,7 +70,7 @@ servicio.selectByDate = function(data,callback){
         +",au.idAuto, au.modelo, au.marca, au.anio, au.codigo AS codigoAuto "
         +",sr.fecha AS fechaServicio, sr.idEmpresa FROM servicio sr "
         +"INNER JOIN usuario me ON me.idUsuario = sr.idServicio INNER JOIN auto au ON au.idAuto = sr.idAuto "
-        +"WHERE DAY(sr.fecha)= ? && MONTH(sr.fecha) = ? &&  YEAR(sr.fecha) = ? ; ",data,
+        +"WHERE DAY(sr.fecha)= ? && MONTH(sr.fecha) = ? &&  YEAR(sr.fecha) = ? LIMIT 15; ",data,
         function(error, resultado){
             if(resultado != null){
                 callback(null, resultado)

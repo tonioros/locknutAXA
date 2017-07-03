@@ -25,6 +25,19 @@ router.get('/api/empresa/:idEmpresa',
   });
 });
 
+router.get('/api/empresa/CD/:codigo',
+  function(req, res) {
+    var codigo = req.params.codigo;
+    model.selectByCodigo(codigo,
+      function(error, resultados){
+      if(typeof resultados !== undefined && resultados.length != 0) {
+        res.json({"Mensaje": resultados[0]});
+      } else {
+        res.json({"Mensaje": false});
+      }
+  });
+});
+
 router.post('/api/empresa', function(req, res) {
   var data = {
     nombre : req.body.nombre,

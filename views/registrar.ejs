@@ -1,39 +1,52 @@
 <% include Shared/layout %>
+    <div class="row" ng-controller="registrarCLCNTR">
     <h1 class="text-inline">Registarate al servicio de AXA Control, como cliente y disfruta del servicio</h1>
         <div style="padding: 2% 40%;">
             <a class="btn btn-primary" href="#">Ingresa con Facebook <i class="fa fa-facebook-square" aria-hidden="true"></i></a>
         </div>
     <div class="col-lg-12">
-        <form >
+        <form ng-submit="registrarCL()">
             <div class="form-control row">
                 <label for="#us_nombre" class="col-2 col-form-label">Nombre Completo:</label>
-                <input id="us_nombre" placeholder="Nombre Completo" class="col-10 form-control" type="text">
+                <input id="us_nombre" ng-model="nombreCL" placeholder="Nombre Completo" class="col-10 form-control" type="text" required>
             </div>
             <div class="form-control row">
                 <label for="#us_edad" class="col-2 col-form-label">Edad:</label>
-                <input id="us_edad" placeholder="Edad" class="col-10 form-control" type="text">
+                <input id="us_edad" placeholder="Edad" ng-model="edadCL" class="col-10 form-control" type="text" required>
             </div>
             <div class="form-control row">
                 <label for="#us_correo" class="col-2 col-form-label">Correo:</label>
-                <input id="us_correo" placeholder="Correo" class="col-10 form-control" type="email">
+                <input id="us_correo" placeholder="Correo" ng-model="correoCL" class="col-10 form-control" type="email" required>
             </div>
             <div class="form-control row">
                 <label for="#us_pass" class="col-2 col-form-label">Contraseña:</label>
-                <input id="us_pass" placeholder="Contraseña" class="col-10 form-control" type="password">
+                <input id="us_pass" placeholder="Contraseña" ng-model="contrasenaCL" class="col-10 form-control" type="password" required>
+            </div>
+             <div class="form-control row">
+                <label for="#us_pass" class="col-2 col-form-label">Confirmar Contraseña:</label>
+                <input id="us_pass" placeholder="Confirmar Contraseña" ng-model="contrasenaCL2" class="col-10 form-control" type="password" required>
             </div>
             <div class="form-control row">
                 <label for="#us_empresa" class="col-2 col-form-label">Codigo de taller:</label>
-                <input id="us_empresa" placeholder="Codigo T." class="col-10 form-control" type="text" >
-                <small id="emailHelp" class="form-text text-muted">Este codigo debes pedirlo en tu taller a usar.</small>
+                <input id="us_empresa" ng-blur="searchCD()" ng-model="codigoEMRE" placeholder="Codigo T." class="col-10 form-control" type="text" required>
+                <h5 id="nombre_e" ng-show="nombreEM "class="form-text text-muted">{{nombreEM}}</h5>
+                <small id="empresa_us" class="form-text text-muted">Este codigo debes pedirlo en tu taller a usar.</small>
             </div >
             <div style="width: 80%; margin: 3% 20%;">
                 <label class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input">
+                <input type="checkbox" class="custom-control-input" required>
                 <span class="custom-control-indicator"></span>
                 <span class="custom-control-description">Acepta los terminos y Condiciones de uso</span>
                 </label>
             </div>
-            <button type="button" class="btn btn-outline-success" style="width: 80%; margin: 3% 20%;">Registrarme</button>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" ng-show="error.show" ng-init="error={show:false}">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>{{error.titulo}}</strong> {{error.mensaje}}
+            </div>
+            <button type="submit" class="btn btn-outline-success" style="width: 80%; margin: 3% 20%;">Registrarme</button>
         </form>
+    </div>
     </div>
 <% include Shared/footer %>
